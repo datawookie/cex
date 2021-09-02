@@ -68,17 +68,13 @@ get_api_secret <- function() {
 #'
 #' @examples
 #' get_api_nonce()
-get_api_nonce <- function(digits = 10) {
+get_api_nonce <- function(digits = 11) {
   Sys.time() %>%
-    # Seconds since epoch with microsecond resolution.
-    strftime("%s %OS6") %>%
+    # Seconds since epoch with sub-second resolution.
+    strftime("%s %OS1") %>%
     sub(" ..\\.", "", .) %>%
-    # Retain only last 10 digits.
+    # Retain only last digits.
     substring(nchar(.) - digits + 1)
-
-  Sys.time() %>%
-    # Seconds since epoch with microsecond resolution.
-    strftime("%s")
 }
 
 #' Get API signature
@@ -87,6 +83,7 @@ get_api_nonce <- function(digits = 10) {
 #' @export
 #'
 #' @examples
+#' get_api_signature()
 get_api_signature <- function() {
   message = paste0(get_api_nonce(), get_api_user_id(), get_api_key())
   log_debug("Signing message: {message}")
