@@ -1,0 +1,27 @@
+Package: cex
+Type: Package
+Title: A Wrapper for the CEX API
+Version: 0.0.1
+Authors@R: 
+    c(person(given = c("Andrew", "B."),
+             family = "Collier",
+             role = c("aut", "cre"),
+             email = "andrew.b.collier@gmail.com"))
+Description: A wrapper for the CEX API, exposing functionality for trading cryptocurrencies.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+  httr,
+  dplyr,
+  tidyr,
+  purrr,
+  janitor,
+  logger,
+  lubridate,
+  anytime
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
