@@ -13,13 +13,9 @@ currency_limits <- function() {
   tibble(pairs = limits$data$pairs) %>%
     unnest_wider(pairs) %>%
     clean_names() %>%
+    rename_symbols() %>%
     rename(
-      base = symbol1,
-      quote = symbol2,
       min_lot_size_base = min_lot_size
-    ) %>%
-    mutate(
-      pair = paste(base, quote, sep = "/")
     ) %>%
     select(pair, everything(), -min_lot_size_s2)
 }

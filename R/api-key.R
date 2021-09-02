@@ -86,7 +86,6 @@ get_api_nonce <- function(digits = 11) {
 #' get_api_signature()
 get_api_signature <- function() {
   message = paste0(get_api_nonce(), get_api_user_id(), get_api_key())
-  log_debug("Signing message: {message}")
   digest::hmac(
     key = get_api_secret(),
     object = message,
