@@ -1,5 +1,5 @@
 ---
-title: "{clockifycex}"
+title: "{cex}"
 output: github_document
 editor_options: 
   chunk_output_type: console
@@ -31,128 +31,33 @@ The documentation for `{cex}` is hosted at https://datawookie.github.io/cex/.
 
 You're going to need to have an API key from your CEX account. If you don't yet have an account, create one. Then create and active a key from the [API settings](https://cex.io/trade/profile#/api). Store the key and secret somewhere secure.
 
-## Get Started
+## Endpoints
 
-The first thing you'll need to do is set up your API key and secret. I store mine in environment variable.
+### Public API calls
 
-```{r get-api-key}
-CEX_API_KEY    = Sys.getenv("CEX_API_KEY")
-CEX_API_SECRET = Sys.getenv("CEX_API_SECRET")
-```
+- [X] Currency limits
+- [ ] Ticker
+- [ ] Tickers for all pairs by markets
+- [ ] Last price
+- [ ] Last prices for given markets
+- [ ] Converter
+- [ ] Chart
+- [ ] Historical 1m OHLCV Chart
+- [ ] Orderbook
+- [ ] Trade history
 
-Now load the `{clockify}` package and specify the API key.
+### Private API calls
 
-```{r set-api-key}
-library(clockify)
-
-set_api_key(CLOCKIFY_API_KEY)
-```
-
-Let's turn on some logging so we can see what's happening behind the scenes.
-
-```{r enable-logging}
-library(logger)
-
-log_threshold(DEBUG)
-```
-```{r include=FALSE}
-log_appender(appender_stdout)
-log_layout(layout_glue_generator(format = '{time} — {msg}'))
-```
-
-## Workspaces
-
-Retrieve a list of available workspaces.
-
-```{r get-all-workspaces}
-workspaces()
-```
-
-Select a specific workspace.
-
-```{r set-workspace}
-workspace("612b15a5f4c3bf0462192677")
-```
-
-## Users
-
-Retrieve information on your user profile.
-
-```{r get-user}
-user()
-```
-
-Get a list of users.
-
-```{r get-all-users}
-users()
-```
-
-## Clients
-
-Get a list of clients.
-
-```{r get-clients}
-clients()
-```
-
-## Projects
-
-Get a list of projects.
-
-```{r get-projects}
-projects()
-```
-
-## Time Entries
-
-### Retrieve Time Entries
-
-Retrieve the time entries for the authenticated user.
-
-```{r get-all-time-entries}
-time_entries()
-```
-
-Retrieve time entries for another user specified by their user ID.
-
-```{r get-user-time-entries}
-time_entries(user_id = "5ef46293df73063139f60bf5")
-```
-
-### Insert Time Entry
-
-```{r put-time-entries}
-prepare_cran_id <- time_entry_insert(
- project_id = "612b16c0bc325f120a1e5099",
- start = "2021-08-30 08:00:00",
- end   = "2021-08-30 10:30:00",
- description = "Prepare for CRAN submission"
-)
-```
-
-Check on the ID for this new time entry.
-
-```{r get-time-entry-id}
-prepare_cran_id
-```
-
-Confirm that it has been inserted.
-
-```{r check-insert-time-entry, concise = FALSE}
-time_entries("612b15a4f4c3bf0462192676", concise = FALSE) %>%
-  select(id, description, time_start, time_end)
-```
-
-### Delete Time Entry
-
-```{r delete-time-entry}
-time_entry_delete(prepare_cran_id)
-```
-
-Confirm that it has been deleted.
-
-```{r check-delete-time-entry, concise = FALSE}
-time_entries("612b15a4f4c3bf0462192676", concise = FALSE) %>%
-  select(id, description, time_start, time_end)
-```
+- [X] Account balance
+- [X] Open orders
+- [ ] Open orders by pair
+- [ ] Active order status
+- [ ] Archived orders
+- [ ] Cancel order
+- [ ] Cancel all orders for given pair
+- [ ] Place order
+- [X] Get order details
+- [ ] Get order transactions
+- [ ] Get crypto address
+- [ ] Get my fee
+- [ ] Cancel replace order
