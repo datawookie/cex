@@ -12,7 +12,7 @@ open_orders <- function() {
     signature = get_api_signature(),
     nonce = get_api_nonce()
   )
-  balance <- POST(path, body) %>%
+  POST(path, body) %>%
     content() %>%
     map_dfr(as_tibble) %>%
     rename_symbols() %>%
@@ -23,4 +23,30 @@ open_orders <- function() {
       amount = as.numeric(amount),
       pending = as.numeric(pending)
     )
+}
+
+#' Get order details
+#'
+#' @param order_id
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_order <- function(order_id) {
+  path <- "get_order/"
+  body <- list(
+    key = get_api_key(),
+    signature = get_api_signature(),
+    nonce = get_api_nonce()
+  )
+
+  body$id <- order_id
+
+  POST(path, body) %>%
+    content() %>%
+    as_tibble() %>%
+    clean_names() %>%
+    rename_symbols() %>%
+    select(-order_id)
 }
