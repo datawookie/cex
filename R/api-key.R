@@ -68,6 +68,10 @@ get_api_secret <- function() {
 
 #' Get nonce
 #'
+#' If you change the way that the nonce is generated then you might need to
+#' regenerate your API key. The reason for this is that the nonce associated
+#' with any given key can only increase.
+#'
 #' @param digits Number of digits in nonce string.
 #'
 #' @return A character vector.
@@ -75,10 +79,10 @@ get_api_secret <- function() {
 #'
 #' @examples
 #' get_api_nonce()
-get_api_nonce <- function(digits = 11) {
+get_api_nonce <- function(digits = 12) {
   Sys.time() %>%
     # Seconds since epoch with sub-second resolution.
-    strftime("%s %OS1") %>%
+    strftime("%s %OS2") %>%
     sub(" ..\\.", "", .) %>%
     # Retain only last digits.
     substring(nchar(.) - digits + 1)
