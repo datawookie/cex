@@ -13,5 +13,7 @@ A tibble
 Get open orders
 }
 \examples{
+\dontrun{
 open_orders()
+}
 }

@@ -4,7 +4,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' open_orders()
+#' }
 open_orders <- function() {
   path <- "open_orders/"
   body <- list(
@@ -27,12 +29,15 @@ open_orders <- function() {
 
 #' Get order details
 #'
-#' @param order_id
+#' @param order_id Order ID.
 #'
-#' @return
+#' @return A data frame.
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' get_order()
+#' }
 get_order <- function(order_id) {
   path <- "get_order/"
   body <- list(

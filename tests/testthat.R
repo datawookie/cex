@@ -1,4 +1,4 @@
 library(testthat)
-library(clockify)
+library(cex)
 
-test_check("clockify")
+test_check("cex")

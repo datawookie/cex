@@ -4,12 +4,14 @@
 \alias{set_credentials}
 \title{Set API credentials}
 \usage{
-set_credentials(user_id, key, secret)
+set_credentials(user_id = NULL, key = NULL, secret = NULL)
 }
 \arguments{
-\item{api_key}{A CEX API key}
+\item{user_id}{API user ID.}
 
-\item{api_secret}{A CEX API secret}
+\item{key}{A CEX API key.}
+
+\item{secret}{A CEX API secret.}
 }
 \description{
 Set API credentials
@@ -18,5 +20,6 @@ Set API credentials
 CEX_API_USER_ID  = Sys.getenv("CEX_USER_ID")
 CEX_API_KEY      = Sys.getenv("CEX_API_KEY")
 CEX_API_SECRET   = Sys.getenv("CEX_API_SECRET")
-set_api_key(CEX_API_KEY, CEX_API_SECRET)
+
+set_credentials(CEX_API_USER_ID, CEX_API_KEY, CEX_API_SECRET)
 }

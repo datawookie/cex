@@ -13,5 +13,6 @@ The user ID.
 Get User ID
 }
 \examples{
+set_credentials(user_id = Sys.getenv("CEX_USER_ID"))
 get_api_user_id()
 }

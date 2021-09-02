@@ -13,6 +13,7 @@ check_response <- function(response) {
 #' Asserts UTF-8 encoding.
 #'
 #' @param x A request object
+#' @param type MIME type
 content <- function(x, type = "application/json") {
   httr::content(x, type = type, encoding = "UTF-8")
 }
@@ -31,10 +32,7 @@ GET <- function(path, query = NULL) {
 
   response <- httr::GET(
     url,
-    query = query,
-    add_headers(
-      "X-Api-Key" = get_api_key()
-    )
+    query = query
   )
 
   check_response(response)
@@ -57,9 +55,6 @@ POST <- function(path, body = NULL) {
   response <- httr::POST(
     url,
     body = body,
-    add_headers(
-      "X-Api-Key" = get_api_key()
-    ),
     encode = "json"
   )
 

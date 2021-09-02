@@ -4,8 +4,9 @@ API_SECRET = "api_secret"
 
 #' Set API credentials
 #'
-#' @param api_key A CEX API key
-#' @param api_secret A CEX API secret
+#' @param user_id API user ID.
+#' @param key A CEX API key.
+#' @param secret A CEX API secret.
 #'
 #' @export
 #'
@@ -13,11 +14,12 @@ API_SECRET = "api_secret"
 #' CEX_API_USER_ID  = Sys.getenv("CEX_USER_ID")
 #' CEX_API_KEY      = Sys.getenv("CEX_API_KEY")
 #' CEX_API_SECRET   = Sys.getenv("CEX_API_SECRET")
-#' set_api_key(CEX_API_KEY, CEX_API_SECRET)
-set_credentials <- function(user_id, key, secret) {
-  cache_set(API_USER_ID, user_id)
-  cache_set(API_KEY, key)
-  cache_set(API_SECRET, secret)
+#'
+#' set_credentials(CEX_API_USER_ID, CEX_API_KEY, CEX_API_SECRET)
+set_credentials <- function(user_id = NULL, key = NULL, secret = NULL) {
+  if (!is.null(user_id)) cache_set(API_USER_ID, user_id)
+  if (!is.null(key)) cache_set(API_KEY, key)
+  if (!is.null(secret)) cache_set(API_SECRET, secret)
 
   TRUE
 }
@@ -28,6 +30,7 @@ set_credentials <- function(user_id, key, secret) {
 #' @export
 #'
 #' @examples
+#' set_credentials(user_id = Sys.getenv("CEX_USER_ID"))
 #' get_api_user_id()
 get_api_user_id <- function() {
   api_key <- cache_get(API_USER_ID)
@@ -41,6 +44,7 @@ get_api_user_id <- function() {
 #' @export
 #'
 #' @examples
+#' set_credentials(key = Sys.getenv("CEX_API_KEY"))
 #' get_api_key()
 get_api_key <- function() {
   api_key <- cache_get(API_KEY)
@@ -54,7 +58,8 @@ get_api_key <- function() {
 #' @export
 #'
 #' @examples
-#' get_api_key()
+#' set_credentials(secret = Sys.getenv("CEX_API_SECRET"))
+#' get_api_secret()
 get_api_secret <- function() {
   api_secret <- cache_get(API_SECRET)
   if (is.null(api_secret)) stop("API secret has not been set.")
@@ -63,7 +68,9 @@ get_api_secret <- function() {
 
 #' Get nonce
 #'
-#' @return
+#' @param digits Number of digits in nonce string.
+#'
+#' @return A character vector.
 #' @export
 #'
 #' @examples
@@ -79,11 +86,13 @@ get_api_nonce <- function(digits = 11) {
 
 #' Get API signature
 #'
-#' @return
+#' @return A character vector.
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' get_api_signature()
+#' }
 get_api_signature <- function() {
   message = paste0(get_api_nonce(), get_api_user_id(), get_api_key())
   digest::hmac(

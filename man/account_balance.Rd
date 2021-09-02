@@ -13,5 +13,7 @@ A tibble
 Get account balance
 }
 \examples{
-currency_limits()
+\dontrun{
+account_balance()
+}
 }

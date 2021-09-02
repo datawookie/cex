@@ -13,5 +13,6 @@ The API key.
 Get API key
 }
 \examples{
+set_credentials(key = Sys.getenv("CEX_API_KEY"))
 get_api_key()
 }

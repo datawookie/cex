@@ -8,6 +8,8 @@ content(x, type = "application/json")
 }
 \arguments{
 \item{x}{A request object}
+
+\item{type}{MIME type}
 }
 \description{
 Asserts UTF-8 encoding.

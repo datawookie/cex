@@ -7,11 +7,13 @@
 get_api_signature()
 }
 \value{
-
+A character vector.
 }
 \description{
 Get API signature
 }
 \examples{
+\dontrun{
 get_api_signature()
+}
 }

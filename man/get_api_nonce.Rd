@@ -6,8 +6,11 @@
 \usage{
 get_api_nonce(digits = 11)
 }
+\arguments{
+\item{digits}{Number of digits in nonce string.}
+}
 \value{
-
+A character vector.
 }
 \description{
 Get nonce

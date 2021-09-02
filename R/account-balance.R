@@ -4,7 +4,9 @@
 #' @export
 #'
 #' @examples
-#' currency_limits()
+#' \dontrun{
+#' account_balance()
+#' }
 account_balance <- function() {
   path <- "balance/"
   body <- list(

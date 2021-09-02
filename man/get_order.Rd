@@ -7,11 +7,16 @@
 get_order(order_id)
 }
 \arguments{
-\item{order_id}{}
+\item{order_id}{Order ID.}
 }
 \value{
-
+A data frame.
 }
 \description{
 Get order details
+}
+\examples{
+\dontrun{
+get_order()
+}
 }
