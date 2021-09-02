@@ -1,7 +1,8 @@
+API_USER_ID = "api_user_id"
 API_KEY = "api_key"
 API_SECRET = "api_secret"
 
-#' Set API key
+#' Set API credentials
 #'
 #' @param api_key A CEX API key
 #' @param api_secret A CEX API secret
@@ -9,14 +10,29 @@ API_SECRET = "api_secret"
 #' @export
 #'
 #' @examples
-#' CEX_API_KEY    = Sys.getenv("CEX_API_KEY")
-#' CEX_API_SECRET = Sys.getenv("CEX_API_SECRET")
+#' CEX_API_USER_ID  = Sys.getenv("CEX_USER_ID")
+#' CEX_API_KEY      = Sys.getenv("CEX_API_KEY")
+#' CEX_API_SECRET   = Sys.getenv("CEX_API_SECRET")
 #' set_api_key(CEX_API_KEY, CEX_API_SECRET)
-set_api_key <- function(api_key, api_secret) {
-  assign(API_KEY, api_key, envir = cache)
-  assign(API_SECRET, api_secret, envir = cache)
+set_credentials <- function(user_id, key, secret) {
+  cache_set(API_USER_ID, user_id)
+  cache_set(API_KEY, key)
+  cache_set(API_SECRET, secret)
 
   TRUE
+}
+
+#' Get User ID
+#'
+#' @return The user ID.
+#' @export
+#'
+#' @examples
+#' get_api_user_id()
+get_api_user_id <- function() {
+  api_key <- cache_get(API_USER_ID)
+  if (is.null(api_key)) stop("API user ID has not been set.")
+  api_key
 }
 
 #' Get API key
@@ -27,7 +43,7 @@ set_api_key <- function(api_key, api_secret) {
 #' @examples
 #' get_api_key()
 get_api_key <- function() {
-  api_key <- get(API_KEY, envir = cache)
+  api_key <- cache_get(API_KEY)
   if (is.null(api_key)) stop("API key has not been set.")
   api_key
 }
@@ -40,7 +56,45 @@ get_api_key <- function() {
 #' @examples
 #' get_api_key()
 get_api_secret <- function() {
-  api_secret <- get(API_SECRET, envir = cache)
+  api_secret <- cache_get(API_SECRET)
   if (is.null(api_secret)) stop("API secret has not been set.")
   api_secret
+}
+
+#' Get nonce
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' get_api_nonce()
+get_api_nonce <- function(digits = 10) {
+  Sys.time() %>%
+    # Seconds since epoch with microsecond resolution.
+    strftime("%s %OS6") %>%
+    sub(" ..\\.", "", .) %>%
+    # Retain only last 10 digits.
+    substring(nchar(.) - digits + 1)
+
+  Sys.time() %>%
+    # Seconds since epoch with microsecond resolution.
+    strftime("%s")
+}
+
+#' Get API signature
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_api_signature <- function() {
+  message = paste0(get_api_nonce(), get_api_user_id(), get_api_key())
+  log_debug("Signing message: {message}")
+  digest::hmac(
+    key = get_api_secret(),
+    object = message,
+    algo = 'sha256',
+    serialize = FALSE
+  ) %>%
+    toupper()
 }
