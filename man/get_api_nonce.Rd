@@ -4,7 +4,7 @@
 \alias{get_api_nonce}
 \title{Get nonce}
 \usage{
-get_api_nonce(digits = 11)
+get_api_nonce(digits = 14)
 }
 \arguments{
 \item{digits}{Number of digits in nonce string.}
@@ -13,7 +13,9 @@ get_api_nonce(digits = 11)
 A character vector.
 }
 \description{
-Get nonce
+If you change the way that the nonce is generated then you might need to
+regenerate your API key. The reason for this is that the nonce associated
+with any given key can only increase.
 }
 \examples{
 get_api_nonce()

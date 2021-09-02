@@ -79,13 +79,16 @@ get_api_secret <- function() {
 #'
 #' @examples
 #' get_api_nonce()
-get_api_nonce <- function(digits = 12) {
-  Sys.time() %>%
+get_api_nonce <- function(digits = 14) {
+  nonce <- Sys.time() %>%
     # Seconds since epoch with sub-second resolution.
-    strftime("%s %OS2") %>%
+    strftime("%s %OS4") %>%
     sub(" ..\\.", "", .) %>%
     # Retain only last digits.
     substring(nchar(.) - digits + 1)
+
+  log_debug("nonce = {nonce}")
+  nonce
 }
 
 #' Get API signature
@@ -98,12 +101,19 @@ get_api_nonce <- function(digits = 12) {
 #' get_api_signature()
 #' }
 get_api_signature <- function() {
-  message = paste0(get_api_nonce(), get_api_user_id(), get_api_key())
-  digest::hmac(
+  nonce <- get_api_nonce()
+
+  message = digest::hmac(
     key = get_api_secret(),
-    object = message,
+    object = paste0(nonce, get_api_user_id(), get_api_key()),
     algo = 'sha256',
     serialize = FALSE
   ) %>%
     toupper()
+
+  list(
+    key = get_api_key(),
+    signature = message,
+    nonce = nonce
+  )
 }

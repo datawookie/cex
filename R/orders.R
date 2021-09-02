@@ -9,13 +9,11 @@
 #' }
 open_orders <- function() {
   path <- "open_orders/"
-  body <- list(
-    key = get_api_key(),
-    signature = get_api_signature(),
-    nonce = get_api_nonce()
-  )
-  POST(path, body) %>%
-    content() %>%
+  body <- get_api_signature()
+  orders <- POST(path, body) %>%
+    content()
+
+  orders %>%
     map_dfr(as_tibble) %>%
     rename_symbols() %>%
     mutate(
@@ -24,7 +22,8 @@ open_orders <- function() {
       price = as.numeric(price),
       amount = as.numeric(amount),
       pending = as.numeric(pending)
-    )
+    ) %>%
+    select(id, time, base, quote, pair, everything())
 }
 
 #' Get order details
@@ -40,16 +39,14 @@ open_orders <- function() {
 #' }
 get_order <- function(order_id) {
   path <- "get_order/"
-  body <- list(
-    key = get_api_key(),
-    signature = get_api_signature(),
-    nonce = get_api_nonce()
-  )
+  body <- get_api_signature()
 
   body$id <- order_id
 
-  POST(path, body) %>%
-    content() %>%
+  order <- POST(path, body) %>%
+    content()
+
+  order %>%
     as_tibble() %>%
     clean_names() %>%
     rename_symbols() %>%

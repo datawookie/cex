@@ -3,8 +3,17 @@ api_url <- function(path) {
 }
 
 check_response <- function(response) {
-  if (status_code(response) == 404) {
+  status_code = status_code(response)
+  log_debug("status code = {status_code}")
+  if (status_code == 404) {
     stop("Page not found!", call. = FALSE)
+  }
+
+  # There can be an error even if the status code is 200.
+  #
+  result = content(response)
+  if (!is.null(result$error)) {
+    stop(result$error, call. = FALSE)
   }
 }
 

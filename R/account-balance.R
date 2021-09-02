@@ -9,13 +9,11 @@
 #' }
 account_balance <- function() {
   path <- "balance/"
-  body <- list(
-    key = get_api_key(),
-    signature = get_api_signature(),
-    nonce = get_api_nonce()
-  )
+  body <- get_api_signature()
   balance <- POST(path, body) %>%
-    content() %>%
+    content()
+
+  balance %>%
     as_tibble() %>%
     pivot_longer(cols = c(-timestamp, -username), names_to = "currency") %>%
     group_by(timestamp, username, currency) %>%
