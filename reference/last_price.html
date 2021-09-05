@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get currency limits for all pairs — currency_limits • cex</title>
+<title>Get last price — last_price • cex</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get currency limits for all pairs — currency_limits" />
-<meta property="og:description" content="Get currency limits for all pairs" />
+<meta property="og:title" content="Get last price — last_price" />
+<meta property="og:description" content="Wraps GET https://cex.io/api/last_price/{symbol1}/{symbol2}." />
 
 
 
@@ -108,38 +108,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get currency limits for all pairs</h1>
+    <h1>Get last price</h1>
     
-    <div class="hidden name"><code>currency_limits.Rd</code></div>
+    <div class="hidden name"><code>last_price.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get currency limits for all pairs</p>
+    <p>Wraps <code>GET https://cex.io/api/last_price/{symbol1}/{symbol2}</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>currency_limits</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>last_price</span><span class='op'>(</span><span class='va'>base</span>, <span class='va'>quote</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>base</th>
+      <td><p>Base currency</p></td>
+    </tr>
+    <tr>
+      <th>quote</th>
+      <td><p>Quote currency</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>currency_limits</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 214 × 7</span>
-#&gt;    pair     base  quote price_precision min_lot_size_base min_price max_price
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> BTC/USD  BTC   USD   1                        0.000<span style='text-decoration: underline;'>141</span> 3500      350000   
-#&gt; <span style='color: #BCBCBC;'> 2</span> ETH/USD  ETH   USD   2                        0.003    26.41     10000    
-#&gt; <span style='color: #BCBCBC;'> 3</span> BCH/USD  BCH   USD   2                        0.02     43.40     8192     
-#&gt; <span style='color: #BCBCBC;'> 4</span> DASH/USD DASH  USD   3                        0.029<span style='text-decoration: underline;'>1</span>   12.98     4096     
-#&gt; <span style='color: #BCBCBC;'> 5</span> LTC/USD  LTC   USD   3                        0.054<span style='text-decoration: underline;'>4</span>   7.73      2048     
-#&gt; <span style='color: #BCBCBC;'> 6</span> XRP/USD  XRP   USD   5                       11        0.0347    10       
-#&gt; <span style='color: #BCBCBC;'> 7</span> XLM/USD  XLM   USD   5                       32        0.002     10       
-#&gt; <span style='color: #BCBCBC;'> 8</span> OMG/USD  OMG   USD   5                        1.05     0.11      50       
-#&gt; <span style='color: #BCBCBC;'> 9</span> MHC/USD  MHC   USD   4                      650        0.0004    50       
-#&gt; <span style='color: #BCBCBC;'>10</span> TRX/USD  TRX   USD   6                       67.5      0.0023    50       
-#&gt; <span style='color: #949494;'># … with 204 more rows</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>last_price</span><span class='op'>(</span><span class='st'>"ETH"</span>, <span class='st'>"USD"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 × 3</span>
+#&gt;   base  quote price  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'>1</span> ETH   USD   3863.03</div><div class='input'><span class='fu'>last_price</span><span class='op'>(</span><span class='st'>"BTC"</span>, <span class='st'>"USD"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 × 3</span>
+#&gt;   base  quote price  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
+#&gt; <span style='color: #BCBCBC;'>1</span> BTC   USD   49719.8</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

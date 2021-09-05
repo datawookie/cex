@@ -85,40 +85,49 @@
 <div id="endpoints" class="section level2">
 <h2 class="hasAnchor">
 <a href="#endpoints" class="anchor"></a>Endpoints</h2>
+<p>Endpoints which have currently been implemented in this package.</p>
 <div id="public-api-calls" class="section level3">
 <h3 class="hasAnchor">
 <a href="#public-api-calls" class="anchor"></a>Public API calls</h3>
 <ul>
 <li>
 <input type="checkbox" disabled checked>
-Currency limits</li>
+GET <a href="https://cex.io/api/currency_limits" class="uri">https://cex.io/api/currency_limits</a>
+</li>
+<li>
+<input type="checkbox" disabled checked>
+GET <a href="https://cex.io/api/ticker/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/ticker/{symbol1}/{symbol2}</a>
+</li>
+<li>
+<input type="checkbox" disabled checked>
+GET <a href="https://cex.io/api/tickers/%7Bsymbol1%7D/%7Bsymbol2%7D/">https://cex.io/api/tickers/{symbol1}/{symbol2}/</a>…/{symbolN}</li>
+<li>
+<input type="checkbox" disabled checked>
+GET <a href="https://cex.io/api/last_price/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/last_price/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Ticker</li>
+GET <a href="https://cex.io/api/last_prices/%7BmarketSymbol1%7D/%7BmarketSymbol2%7D/">https://cex.io/api/last_prices/{marketSymbol1}/{marketSymbol2}/</a>…/{marketSymbolN}</li>
 <li>
 <input type="checkbox" disabled>
-Tickers for all pairs by markets</li>
+POST <a href="https://cex.io/api/convert/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/convert/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Last price</li>
+POST <a href="https://cex.io/api/price_stats/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/price_stats/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Last prices for given markets</li>
+GET <a href="https://cex.io/api/ohlcv/hd/%7Bdate%7D/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/ohlcv/hd/{date}/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Converter</li>
+GET <a href="https://cex.io/api/order_book/%7Bsymbol1%7D/%7Bsymbol2%7D/">https://cex.io/api/order_book/{symbol1}/{symbol2}/</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Chart</li>
-<li>
-<input type="checkbox" disabled>
-Historical 1m OHLCV Chart</li>
-<li>
-<input type="checkbox" disabled>
-Orderbook</li>
-<li>
-<input type="checkbox" disabled>
-Trade history</li>
+GET <a href="https://cex.io/api/trade_history/%7Bsymbol1%7D/%7Bsymbol2%7D/">https://cex.io/api/trade_history/{symbol1}/{symbol2}/</a>
+</li>
 </ul>
 </div>
 <div id="private-api-calls" class="section level3">
@@ -127,43 +136,56 @@ Trade history</li>
 <ul>
 <li>
 <input type="checkbox" disabled checked>
-Account balance</li>
+POST <a href="https://cex.io/api/balance/" class="uri">https://cex.io/api/balance/</a>
+</li>
 <li>
 <input type="checkbox" disabled checked>
-Open orders</li>
+POST <a href="https://cex.io/api/open_orders/" class="uri">https://cex.io/api/open_orders/</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Open orders by pair</li>
+POST <a href="https://cex.io/api/open_orders/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/open_orders/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Active order status</li>
-<li>
-<input type="checkbox" disabled>
-Archived orders</li>
-<li>
-<input type="checkbox" disabled>
-Cancel order</li>
-<li>
-<input type="checkbox" disabled>
-Cancel all orders for given pair</li>
-<li>
-<input type="checkbox" disabled>
-Place order</li>
+POST <a href="https://cex.io/api/active_orders_status" class="uri">https://cex.io/api/active_orders_status</a>
+</li>
 <li>
 <input type="checkbox" disabled checked>
-Get order details</li>
+POST <a href="https://cex.io/api/archived_orders/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/archived_orders/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Get order transactions</li>
+POST <a href="https://cex.io/api/cancel_order/" class="uri">https://cex.io/api/cancel_order/</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Get crypto address</li>
+POST <a href="https://cex.io/api/cancel_orders/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/cancel_orders/{symbol1}/{symbol2}</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Get my fee</li>
+POST <a href="https://cex.io/api/place_order/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/place_order/{symbol1}/{symbol2}</a>
+</li>
+<li>
+<input type="checkbox" disabled checked>
+POST <a href="https://cex.io/api/get_order/" class="uri">https://cex.io/api/get_order/</a>
+</li>
+<li>
+<input type="checkbox" disabled checked>
+POST <a href="https://cex.io/api/get_order_tx/" class="uri">https://cex.io/api/get_order_tx/</a>
+</li>
 <li>
 <input type="checkbox" disabled>
-Cancel replace order</li>
+POST <a href="https://cex.io/api/get_address/" class="uri">https://cex.io/api/get_address/</a>
+</li>
+<li>
+<input type="checkbox" disabled>
+POST <a href="https://cex.io/api/get_myfee/" class="uri">https://cex.io/api/get_myfee/</a>
+</li>
+<li>
+<input type="checkbox" disabled>
+POST <a href="https://cex.io/api/cancel_replace_order/%7Bsymbol1%7D/%7Bsymbol2%7D">https://cex.io/api/cancel_replace_order/{symbol1}/{symbol2}</a>
+</li>
 </ul>
 </div>
 </div>
