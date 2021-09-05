@@ -32,31 +32,33 @@ You're going to need to have an API key from your CEX account. If you don't yet 
 
 ## Endpoints
 
+Endpoints which have currently been implemented in this package.
+
 ### Public API calls
 
-- [X] Currency limits
-- [ ] Ticker
-- [ ] Tickers for all pairs by markets
-- [ ] Last price
-- [ ] Last prices for given markets
-- [ ] Converter
-- [ ] Chart
-- [ ] Historical 1m OHLCV Chart
-- [ ] Orderbook
-- [ ] Trade history
+- [X] GET https://cex.io/api/currency_limits
+- [X] GET https://cex.io/api/ticker/{symbol1}/{symbol2}
+- [X] GET https://cex.io/api/tickers/{symbol1}/{symbol2}/.../{symbolN}
+- [X] GET https://cex.io/api/last_price/{symbol1}/{symbol2}
+- [ ] GET https://cex.io/api/last_prices/{marketSymbol1}/{marketSymbol2}/.../{marketSymbolN}
+- [ ] POST https://cex.io/api/convert/{symbol1}/{symbol2}
+- [ ] POST https://cex.io/api/price_stats/{symbol1}/{symbol2}
+- [ ] GET https://cex.io/api/ohlcv/hd/{date}/{symbol1}/{symbol2}
+- [ ] GET https://cex.io/api/order_book/{symbol1}/{symbol2}/
+- [ ] GET https://cex.io/api/trade_history/{symbol1}/{symbol2}/
 
 ### Private API calls
 
-- [X] Account balance
-- [X] Open orders
-- [ ] Open orders by pair
-- [ ] Active order status
-- [ ] Archived orders
-- [ ] Cancel order
-- [ ] Cancel all orders for given pair
-- [ ] Place order
-- [X] Get order details
-- [ ] Get order transactions
-- [ ] Get crypto address
-- [ ] Get my fee
-- [ ] Cancel replace order
+- [X] POST https://cex.io/api/balance/
+- [X] POST https://cex.io/api/open_orders/
+- [ ] POST https://cex.io/api/open_orders/{symbol1}/{symbol2}
+- [ ] POST https://cex.io/api/active_orders_status
+- [X] POST https://cex.io/api/archived_orders/{symbol1}/{symbol2}
+- [ ] POST https://cex.io/api/cancel_order/
+- [ ] POST https://cex.io/api/cancel_orders/{symbol1}/{symbol2}
+- [ ] POST https://cex.io/api/place_order/{symbol1}/{symbol2}
+- [X] POST https://cex.io/api/get_order/
+- [X] POST https://cex.io/api/get_order_tx/
+- [ ] POST https://cex.io/api/get_address/
+- [ ] POST https://cex.io/api/get_myfee/
+- [ ] POST https://cex.io/api/cancel_replace_order/{symbol1}/{symbol2}

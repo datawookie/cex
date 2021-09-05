@@ -1,5 +1,6 @@
 #' @import httr
 #' @import dplyr
+#' @importFrom glue glue
 #' @import tidyr
 #' @import purrr
 #' @import janitor
@@ -31,3 +32,5 @@ globalVariables(
     "value"
   )
 )
+
+TYPES = c("buy", "sell", "cancel")
