@@ -1,6 +1,6 @@
 #' Get order transactions
 #'
-#' @param transaction_id Transaction ID
+#' @param order_id Order ID
 #'
 #' @return A tibble
 #' @export

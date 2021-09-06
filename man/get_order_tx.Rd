@@ -7,7 +7,7 @@
 get_order_tx(order_id)
 }
 \arguments{
-\item{transaction_id}{Transaction ID}
+\item{order_id}{Order ID}
 }
 \value{
 A tibble
